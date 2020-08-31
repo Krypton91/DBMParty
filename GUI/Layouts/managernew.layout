@@ -1,0 +1,464 @@
+FrameWidgetClass rootFrame {
+ ignorepointer 1
+ position -0.00047 -0.00035
+ size 1 1
+ hexactpos 0
+ vexactpos 0
+ hexactsize 0
+ vexactsize 0
+ {
+  PanelWidgetClass SchanaPartyManagerWidget {
+   visible 1
+   ignorepointer 1
+   position 0.3901 0.113
+   size 0.39637 0.40467
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+   scaled 1
+   style rover_sim_black
+   {
+    PanelWidgetClass PanelWidget0 {
+     ignorepointer 1
+     position 0.00887 0.01146
+     size 0.98 0.97808
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     {
+      TextListboxWidgetClass Party {
+       clipchildren 1
+       position 0.4116 0.19618
+       size 0.56855 0.73268
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       font "gui/fonts/metron22"
+      }
+     }
+    }
+    TextWidgetClass Text_Party {
+     ignorepointer 1
+     position 381.62 28.7002
+     size 274.198 48
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     style Bold
+     text "Party:"
+     "text halign" center
+     "text valign" center
+    }
+   }
+  }
+  PanelWidgetClass Overlay_OnlinePlayer {
+   visible 1
+   ignorepointer 1
+   position 0.21764 0.11285
+   size 0.16849 0.78032
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+   scaled 1
+   style rover_sim_black
+   {
+    TextListboxWidgetClass List_OnlinePlayers {
+     clipchildren 1
+     color 1 0.9647 0.5608 1
+     position 0.06288 0.07566
+     size 0.89132 0.72928
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     font "gui/fonts/metron22"
+     {
+      EditBoxWidgetClass EditBoxWidget0 {
+       position -0.26135 711.63599
+       size 272.64001 53.5059
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+      }
+     }
+    }
+    TextWidgetClass Text_OnlinePlayer {
+     ignorepointer 1
+     position 19.5743 8.50112
+     size 275.69699 48
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     style Bold
+     text "Online Player:"
+     "text halign" center
+     "text valign" center
+    }
+   }
+  }
+  ButtonWidgetClass Button_ADD0 {
+   color 0 0.502 0.1255 1
+   position 747.255 267.668
+   size 216.98799 46.2733
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   text "Add"
+  }
+  GridSpacerWidgetClass Border_ADD_4 {
+   ignorepointer 1
+   color 0 0 0 1
+   position 745.26202 314.61502
+   size 219.24899 2.48035
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+  }
+  GridSpacerWidgetClass Border_ADD_5 {
+   ignorepointer 1
+   color 0 0 0 1
+   position 744.93604 266.22202
+   size 2.2324 49.4074
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+  }
+  GridSpacerWidgetClass Border_ADD_6 {
+   ignorepointer 1
+   color 0 0 0 1
+   position 746.89703 266.405
+   size 217.778 2.29794
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+  }
+  GridSpacerWidgetClass Border_ADD_7 {
+   ignorepointer 1
+   color 0 0 0 1
+   position 962.448 266.88498
+   size 2.8851 50.8733
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+  }
+  ButtonWidgetClass Button_REMOVE {
+   color 0.5922 0.0549 0.0549 1
+   position 747.255 338.39099
+   size 216.98799 46.2733
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   text "Remove"
+  }
+  GridSpacerWidgetClass Border_Remove_1 {
+   ignorepointer 1
+   color 0 0 0 1
+   position 746.40204 384.84998
+   size 218.10901 2.96904
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+  }
+  GridSpacerWidgetClass Border_Remove_0 {
+   ignorepointer 1
+   color 0 0 0 1
+   position 747.05402 337.108
+   size 2.88399 50.7106
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+  }
+  GridSpacerWidgetClass Border_Remove_2 {
+   ignorepointer 1
+   color 0 0 0 1
+   position 746.89703 335.98798
+   size 217.778 3.43821
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+  }
+  GridSpacerWidgetClass Border_Remove_3 {
+   ignorepointer 1
+   color 0 0 0 1
+   position 962.77405 336.63101
+   size 3.53668 50.6062
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+  }
+  GridSpacerWidgetClass Border_Party_1 {
+   ignorepointer 1
+   color 0 0 0 1
+   position 1006.22003 206.64799
+   size 3.15766 323.06
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+  }
+  GridSpacerWidgetClass Border_Party_0 {
+   ignorepointer 1
+   color 0 0 0 1
+   position 1420.84009 206.71899
+   size 3.43785 322.72
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+  }
+  GridSpacerWidgetClass Border_Party_2 {
+   ignorepointer 1
+   color 0 0 0 1
+   position 1006.51001 206.58301
+   size 418.21701 3.39195
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+  }
+  GridSpacerWidgetClass Border_Party_3 {
+   ignorepointer 1
+   color 0 0 0 1
+   position 1006 526.86896
+   size 418.54202 2.90326
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+  }
+  PanelWidgetClass DBM {
+   visible 1
+   ignorepointer 1
+   position 0.21742 0.01139
+   size 0.56968 0.09812
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+   scaled 1
+   style rover_sim_black_2
+   {
+    TextWidgetClass Text_OnlinePlayer0 {
+     ignorepointer 1
+     position 0.58063 28.1659
+     size 1041.80005 48
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     style Bold
+     text "Deutsche Bohrmaschine Party"
+     "text halign" center
+     "text valign" center
+    }
+   }
+  }
+  GridSpacerWidgetClass Border_Party_4 {
+   ignorepointer 1
+   color 0.2431 0.2431 0.2431 1
+   position 401.91 23.6115
+   size 1036.41003 3.05312
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+  }
+  GridSpacerWidgetClass Border_Party_5 {
+   ignorepointer 1
+   color 0.2431 0.2431 0.2431 1
+   position 402.89398 102.935
+   size 1035.43005 3.67865
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+  }
+  PanelWidgetClass Settings {
+   visible 1
+   ignorepointer 1
+   position 0.3901 0.52409
+   size 0.39637 0.20481
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
+   scaled 1
+   style rover_sim_black
+   {
+    PanelWidgetClass PanelWidget1 {
+     ignorepointer 1
+     position 0.00909 0.01262
+     size 0.98 0.97808
+     hexactpos 0
+     vexactpos 0
+     hexactsize 0
+     vexactsize 0
+     {
+      CheckBoxWidgetClass CheckBoxWidget0 {
+       position 6.86558 56.9389
+       size 48 48
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+      }
+      CheckBoxWidgetClass CheckBoxWidget1 {
+       position 7.69308 113.548
+       size 48 48
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+      }
+      TextWidgetClass TextWidget0 {
+       ignorepointer 1
+       position 5.2214 9.74383
+       size 272.33398 37.6985
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style Bold
+       text "Settings:"
+       "text valign" center
+      }
+      CheckBoxWidgetClass CheckBoxWidget2 {
+       position 7.69308 165.68102
+       size 48 48
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+      }
+     }
+    }
+   }
+  }
+  TextWidgetClass DisablePartyMarker0 {
+   ignorepointer 1
+   position 783.599 685.44403
+   size 424.45898 42.8848
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   text "Enable Party Player Marker"
+  }
+  TextWidgetClass DisablePartyMarker {
+   ignorepointer 1
+   position 783.599 629.42004
+   size 424.45898 40.8391
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   text "Enable Party Map Marker"
+  }
+  ImageWidgetClass ImageWidget0 {
+   ignorepointer 1
+   position 542.32001 29.1423
+   size 75.69229 72.9426
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   imageTexture "{387E0C8EFCE22CFB}SchanaModParty/GUI/Layouts/DBMLOgo48.edds"
+  }
+  TextWidgetClass DisablePartyMarker1 {
+   ignorepointer 1
+   position 783.599 736.75
+   size 424.45898 42.8848
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   text "Enable Offline-Mode"
+  }
+  TextWidgetClass TextWidget1 {
+   ignorepointer 1
+   position 418.005 853.758
+   size 250.617 40.2918
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   text "Search:"
+  }
+  GridSpacerWidgetClass Border_Party_6 {
+   ignorepointer 1
+   color 0.2431 0.2431 0.2431 1
+   position 399.603 835.21002
+   size 308.77701 3.84156
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+  }
+  ButtonWidgetClass ButtonWidget0 {
+   position 516.23706 808.58002
+   size 178.08101 21.3372
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   text "Refresh Playerlist"
+  }
+  GridSpacerWidgetClass Border_Party_7 {
+   ignorepointer 1
+   color 0 0 0 1
+   position 417.45697 949.31
+   size 274.405 4.30417
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+  }
+  GridSpacerWidgetClass Border_Party_8 {
+   ignorepointer 1
+   color 0 0 0 1
+   position 416.68698 896.97601
+   size 2.99476 56.9984
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+  }
+  GridSpacerWidgetClass Border_Party_9 {
+   ignorepointer 1
+   color 0 0 0 1
+   position 689.44 897.02802
+   size 2.99476 57.3242
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+  }
+  GridSpacerWidgetClass Border_Party_10 {
+   ignorepointer 1
+   color 0 0 0 1
+   position 416.44699 895.90704
+   size 275.70901 3.65259
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+  }
+ }
+}

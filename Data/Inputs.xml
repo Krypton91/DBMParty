@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<modded_inputs>
+    <inputs>
+        <actions>
+            <input name="UASchanaPartyMenu" loc="Party Menu" />
+            <input name="UASchanaPartyPing" loc="Party Ping" />
+            <input name="UASchanaPartyPingClear" loc="Party Ping Clear" />
+        </actions>
+    </inputs>
+    <preset>
+        <input name="UASchanaPartyMenu">
+            <btn name="kP" />
+        </input>
+        <input name="UASchanaPartyPing">
+            <btn name="kT" />
+        </input>
+        <input name="UASchanaPartyPingClear">
+            <btn name="kY" />
+        </input>
+    </preset>
+</modded_inputs>
