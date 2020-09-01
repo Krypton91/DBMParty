@@ -1,10 +1,10 @@
 class SchanaPartyNametagsMenu extends UIScriptedMenu {
     static string SCHANA_PARTY_NAMETAG_DELETE = "SCHANA_PARTY_NAMETAG_DELETE";
 
-    private Widget m_SchanaPartyNametagRoot;
-    private TextWidget m_SchanaPartyNametagNametag;
-    private TextWidget m_SchanaPartyNametagDistance;
-    private ImageWidget m_SchanaPartyNametagIcon;
+    static Widget m_SchanaPartyNametagRoot;
+    static TextWidget m_SchanaPartyNametagNametag;
+    static TextWidget m_SchanaPartyNametagDistance;
+    static ImageWidget m_SchanaPartyNametagIcon;
 
     private Widget m_SchanaPartyListRootWidget;
     private ref array<ImageWidget> m_SchanaPartyListHealthWidgets;
@@ -49,7 +49,7 @@ class SchanaPartyNametagsMenu extends UIScriptedMenu {
         }
     }
 
-    void CheckSettings()
+    static void CheckSettings()
     {
         //m_SchanaPartyNametagRoot.SetAlpha(PluginPartySettingsClient().MarkerOperacity);
         m_SchanaPartyNametagNametag.SetAlpha(PluginPartySettingsClient().MarkerOperacity);
@@ -84,6 +84,9 @@ class SchanaPartyNametagsMenu extends UIScriptedMenu {
         }
         else if(PluginPartySettingsClient().NameTagStyle == 3)
         {
+            m_SchanaPartyNametagNametag.Show(false);
+            m_SchanaPartyNametagDistance.Show(false);
+            m_SchanaPartyNametagIcon.Show(false);
             m_SchanaPartyNametagRoot.Show(false);
         }
         //PlayerBase player = PlayerBase.Cast(GetGame().GetPlayer());
@@ -93,7 +96,7 @@ class SchanaPartyNametagsMenu extends UIScriptedMenu {
     void SchanaUpdate () 
     {
         if (SchanaPartyNametagShouldShow ()) {
-            CheckSettings();
+            //CheckSettings();
             SchanaPartyNametagUpdate ();
         } else if (m_SchanaPartyNametagRoot != null) {
             m_SchanaPartyNametagRoot.Show (false);

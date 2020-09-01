@@ -326,8 +326,8 @@ FrameWidgetClass rootFrame {
      vexactsize 0
      {
       EditBoxWidgetClass RangeOfMarkersystem {
-       position 0.33967 0.23587
-       size 0.3229 0.1188
+       position 0.403 0.23587
+       size 0.25957 0.11728
        hexactpos 0
        vexactpos 0
        hexactsize 0
@@ -336,8 +336,8 @@ FrameWidgetClass rootFrame {
       }
       TextWidgetClass DBM_TEXTRANGEMARKER {
        ignorepointer 1
-       position 0.00761 0.25713
-       size 0.32374 0.07437
+       position 0.00485 0.25713
+       size 0.39236 0.07237
        hexactpos 0
        vexactpos 0
        hexactsize 0
@@ -381,7 +381,7 @@ FrameWidgetClass rootFrame {
       }
       TextWidgetClass infoWidget {
        ignorepointer 1
-       position -0.01307 0.36856
+       position -0.05471 0.36714
        size 0.88061 0.05595
        halign center_ref
        hexactpos 0

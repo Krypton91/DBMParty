@@ -8,7 +8,6 @@ class SchanaPartyMenu extends UIScriptedMenu {
 	private EditBoxWidget m_playersearchBox;
 	private EditBoxWidget m_RangeOfMarker;
 	private ButtonWidget m_SetBTN;
-	private ButtonWidget m_searchPlayerBTN;
 	int m_offlineModeValue;
 	int m_RangeOfPartyMarkerValue;
 	int m_DisablePingValue;
@@ -52,7 +51,6 @@ class SchanaPartyMenu extends UIScriptedMenu {
 			m_PartyNotify = CheckBoxWidget.Cast(layoutRoot.FindAnyWidget("PartyNotify"));
 			m_DisablePing = CheckBoxWidget.Cast(layoutRoot.FindAnyWidget("DisablePing"));
 			m_SetBTN = ButtonWidget.Cast(layoutRoot.FindAnyWidget("ButtonSet"));
-			m_searchPlayerBTN = ButtonWidget.Cast(layoutRoot.FindAnyWidget("ButtonSearchPlayer"));
 			m_markerOperacity = SliderWidget.Cast(layoutRoot.FindAnyWidget("SliderWidget0"));
 			m_nameTagStyle = XComboBoxWidget.Cast(layoutRoot.FindAnyWidget("SelectNametagStyle"));
 
@@ -67,8 +65,9 @@ class SchanaPartyMenu extends UIScriptedMenu {
 		super.OnChange(w, x, y, finished);
 		if(w == m_markerOperacity)
 		{
-			if(finished){
-			CheckSettings();
+			if(finished)
+			{
+				CheckSettings();
 			}
 			return true;
 		}
@@ -78,6 +77,17 @@ class SchanaPartyMenu extends UIScriptedMenu {
 			{
 				CheckSettings();
 			}
+			return true;
+		}
+		if(w == m_playersearchBox)
+		{
+			//isSearching = true;
+			//if(finished)
+			//{
+				SearchPlayer();
+				//PlayerBase player = PlayerBase.Cast(GetGame().GetPlayer());
+				//player.MessageStatus("Event Search triggert!");
+			//}
 			return true;
 		}
 		return false;
@@ -114,7 +124,6 @@ class SchanaPartyMenu extends UIScriptedMenu {
 	{
 		int selectedRow;
 		Param1<string> id;
-
 		switch (w) 
 		{
 			case m_SchanaPartyButtonAdd:
@@ -143,20 +152,10 @@ class SchanaPartyMenu extends UIScriptedMenu {
 			case m_PartyNotify:
 				PlayerBase player = PlayerBase.Cast(GetGame().GetPlayer());
 				player.MessageStatus("Cooming soon! :) PartySystem V2 by krypton91");
-				//CheckSettings();
 				break;
 			case m_DisablePing:
-				//CheckSettings();
-				break;
-			case m_searchPlayerBTN:
-				SearchPlayer();
 				break;	
 			case m_SetBTN:
-				string rgbox = m_RangeOfMarker.GetText();
-				if(rgbox != "")
-				{
-					//CheckSettings();
-				}
 				break;
 		}
 		//Print("DEBUG:::: Class schanaPartyMenu.c INT VALUES: RangeofMarker: " + m_RangeOfPartyMarkerValue + "Offline Mode Value =  " + m_offlineModeValue + "Diable ping = " + m_DisablePingValue);
@@ -199,6 +198,8 @@ class SchanaPartyMenu extends UIScriptedMenu {
 
 		m_markerOperacityValue = m_markerOperacity.GetCurrent();
 		m_nameTagStyleValue = m_nameTagStyle.GetCurrentItem();
+		PlayerBase player = PlayerBase.Cast(GetGame().GetPlayer());
+		SchanaPartyNametagsMenu.CheckSettings();
 
 		//After Set All Update..
 		PluginPartySettingsClient().UpdateFile(m_RangeOfPartyMarkerValue, m_DisablePingValue, m_PartyNotifyValue, m_markerOperacityValue, m_nameTagStyleValue);
@@ -308,11 +309,16 @@ class SchanaPartyMenu extends UIScriptedMenu {
 
 	void SchanaPartyUpdatePlayerList ()
 	{
-		if(m_playersearchBox.GetText() != "")
+		//Buged with Selection Removed here and added back to the Event.
+		/*if(m_playersearchBox.GetText() != "")
 		{
 			SearchPlayer();
 			return;
 		}
+		*/
+		//Player is searching...
+		if(m_playersearchBox.GetText() != "")
+			return;
 		member_sorting_map.Clear ();
 		int insert_row = 0;
 		auto onlinePlayers = GetSchanaPartyManagerClient ().GetOnlinePlayers ();
