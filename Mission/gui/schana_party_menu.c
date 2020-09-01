@@ -65,12 +65,9 @@ class SchanaPartyMenu extends UIScriptedMenu {
 	override bool OnChange(Widget w, int x, int y, bool finished)
 	{
 		super.OnChange(w, x, y, finished);
-		PlayerBase player = PlayerBase.Cast(GetGame().GetPlayer());
 		if(w == m_markerOperacity)
 		{
 			if(finished){
-			int OperacityValue = m_markerOperacity.GetCurrent();
-			player.MessageStatus("Operacity Updatet to" + OperacityValue);
 			CheckSettings();
 			}
 			return true;
@@ -79,8 +76,7 @@ class SchanaPartyMenu extends UIScriptedMenu {
 		{
 			if(finished)
 			{
-				string lol = m_nameTagStyle.GetCurrentItem().ToString();
-				player.MessageStatus("Current Value:" + lol);
+				CheckSettings();
 			}
 			return true;
 		}

@@ -34,12 +34,10 @@ class SchanaPartyNametagsMenu extends UIScriptedMenu {
         m_SchanaPartyNametagPlayer = player;
 
         GetGame ().GetCallQueue (CALL_CATEGORY_GUI).CallLater (this.SchanaUpdate, 16, true);
-        GetGame ().GetCallQueue (CALL_CATEGORY_GUI).CallLater (this.CheckSettings, 10000, true);
     }
 
     void ~SchanaPartyNametagsMenu () {
         GetGame ().GetCallQueue (CALL_CATEGORY_GUI).Remove (this.SchanaUpdate);
-         GetGame ().GetCallQueue (CALL_CATEGORY_GUI).Remove (this.CheckSettings);
         if (m_SchanaPartyNametagRoot != null) {
             m_SchanaPartyNametagRoot.Show (false);
             m_SchanaPartyNametagRoot.Unlink ();
@@ -53,8 +51,6 @@ class SchanaPartyNametagsMenu extends UIScriptedMenu {
 
     void CheckSettings()
     {
-        if(!PluginPartySettingsClient().shouldUpdateSettings)
-            return;
         //m_SchanaPartyNametagRoot.SetAlpha(PluginPartySettingsClient().MarkerOperacity);
         m_SchanaPartyNametagNametag.SetAlpha(PluginPartySettingsClient().MarkerOperacity);
         m_SchanaPartyNametagDistance.SetAlpha(PluginPartySettingsClient().MarkerOperacity);
@@ -97,6 +93,7 @@ class SchanaPartyNametagsMenu extends UIScriptedMenu {
     void SchanaUpdate () 
     {
         if (SchanaPartyNametagShouldShow ()) {
+            CheckSettings();
             SchanaPartyNametagUpdate ();
         } else if (m_SchanaPartyNametagRoot != null) {
             m_SchanaPartyNametagRoot.Show (false);
