@@ -78,7 +78,6 @@ class SchanaPartyManagerClient {
             }
         }
     }
-
     private void Update () 
     {
         PlayerBase activePlayer = PlayerBase.Cast (GetGame ().GetPlayer ());

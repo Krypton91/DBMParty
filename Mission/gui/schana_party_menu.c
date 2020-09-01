@@ -13,16 +13,24 @@ class SchanaPartyMenu extends UIScriptedMenu {
 	int m_RangeOfPartyMarkerValue;
 	int m_DisablePingValue;
 	int m_PartyNotifyValue;
+	int m_markerOperacityValue;
+	int m_nameTagStyleValue;
 	//CheckBoxen
 	private CheckBoxWidget m_OfflineMode;
 	private CheckBoxWidget m_PartyNotify;
 	private CheckBoxWidget m_DisablePing;
+
+	//SLide Wiget
+	private SliderWidget m_markerOperacity;
+	private XComboBoxWidget m_nameTagStyle;
+
 
 	//SearchFunction:
 	const float m_FilterUpdate = 0.35;
 	float m_FilterUpdateCurTick;
 	private string 	m_searchFilter;
 	bool isSearching;
+	bool shouldUpdateSettings;
 
 	private ref map<string, string> member_sorting_map;
 
@@ -45,6 +53,8 @@ class SchanaPartyMenu extends UIScriptedMenu {
 			m_DisablePing = CheckBoxWidget.Cast(layoutRoot.FindAnyWidget("DisablePing"));
 			m_SetBTN = ButtonWidget.Cast(layoutRoot.FindAnyWidget("ButtonSet"));
 			m_searchPlayerBTN = ButtonWidget.Cast(layoutRoot.FindAnyWidget("ButtonSearchPlayer"));
+			m_markerOperacity = SliderWidget.Cast(layoutRoot.FindAnyWidget("SliderWidget0"));
+			m_nameTagStyle = XComboBoxWidget.Cast(layoutRoot.FindAnyWidget("SelectNametagStyle"));
 
 			m_SchanaPartyIsInitialized = true;
 		}
@@ -52,7 +62,30 @@ class SchanaPartyMenu extends UIScriptedMenu {
 		SchanaPartyUpdateLists();
 		return layoutRoot;
 	}
-
+	override bool OnChange(Widget w, int x, int y, bool finished)
+	{
+		super.OnChange(w, x, y, finished);
+		PlayerBase player = PlayerBase.Cast(GetGame().GetPlayer());
+		if(w == m_markerOperacity)
+		{
+			if(finished){
+			int OperacityValue = m_markerOperacity.GetCurrent();
+			player.MessageStatus("Operacity Updatet to" + OperacityValue);
+			CheckSettings();
+			}
+			return true;
+		}
+		if(w == m_nameTagStyle)
+		{
+			if(finished)
+			{
+				string lol = m_nameTagStyle.GetCurrentItem().ToString();
+				player.MessageStatus("Current Value:" + lol);
+			}
+			return true;
+		}
+		return false;
+	}
 	void ~SchanaPartyMenu () {
 		GetGame ().GetCallQueue (CALL_CATEGORY_GUI).Remove (this.SchanaPartyUpdateLists);
 		GetGame ().GetUIManager ().Back ();
@@ -68,13 +101,14 @@ class SchanaPartyMenu extends UIScriptedMenu {
 	override void OnShow () {
 		super.OnShow ();
 		LoadSettings();
+		shouldUpdateSettings = true;
 		GetGame ().GetCallQueue (CALL_CATEGORY_GUI).CallLater (this.SchanaPartyUpdateLists, 500, true);
 	}
 
 	override void OnHide () {
 		super.OnHide ();
 		GetGame ().GetCallQueue (CALL_CATEGORY_GUI).Remove (this.SchanaPartyUpdateLists);
-
+		shouldUpdateSettings = false;
 		g_Game.GetUIManager ().ShowCursor (true);
 		g_Game.GetUIManager ().ShowUICursor (false);
 		GetGame ().GetInput ().ResetGameFocus ();
@@ -113,10 +147,10 @@ class SchanaPartyMenu extends UIScriptedMenu {
 			case m_PartyNotify:
 				PlayerBase player = PlayerBase.Cast(GetGame().GetPlayer());
 				player.MessageStatus("Cooming soon! :) PartySystem V2 by krypton91");
-				CheckSettings();
+				//CheckSettings();
 				break;
 			case m_DisablePing:
-				CheckSettings();
+				//CheckSettings();
 				break;
 			case m_searchPlayerBTN:
 				SearchPlayer();
@@ -125,13 +159,13 @@ class SchanaPartyMenu extends UIScriptedMenu {
 				string rgbox = m_RangeOfMarker.GetText();
 				if(rgbox != "")
 				{
-					CheckSettings();
+					//CheckSettings();
 				}
 				break;
 		}
 		//Print("DEBUG:::: Class schanaPartyMenu.c INT VALUES: RangeofMarker: " + m_RangeOfPartyMarkerValue + "Offline Mode Value =  " + m_offlineModeValue + "Diable ping = " + m_DisablePingValue);
 		//Upate the DBM Settings file.
-		PluginPartySettingsClient().UpdateFile(m_RangeOfPartyMarkerValue, m_DisablePingValue, m_PartyNotifyValue);
+		CheckSettings();
 		return super.OnClick (w, x, y, button);
 	}
 
@@ -165,6 +199,13 @@ class SchanaPartyMenu extends UIScriptedMenu {
 		{
 			m_RangeOfMarker.SetText("");
 		}
+		//float DayzEngineIsGay = m_markerOperacity.GetCurrent();
+
+		m_markerOperacityValue = m_markerOperacity.GetCurrent();
+		m_nameTagStyleValue = m_nameTagStyle.GetCurrentItem();
+
+		//After Set All Update..
+		PluginPartySettingsClient().UpdateFile(m_RangeOfPartyMarkerValue, m_DisablePingValue, m_PartyNotifyValue, m_markerOperacityValue, m_nameTagStyleValue);
 
 	}
 	bool IsNumberOnly(string index)
@@ -193,7 +234,9 @@ class SchanaPartyMenu extends UIScriptedMenu {
 		int range = settings.RangeOfMarker;
 		if(range != 0)
 			m_RangeOfMarker.SetText(range.ToString());
-
+		
+		m_markerOperacity.SetCurrent(settings.MarkerOperacity);
+		m_nameTagStyle.SetCurrentItem(settings.NameTagStyle);
 		//Print("Settings to load values: " + "TacticalPing system: " + settings.TacticalPing);
 		//Print("Settings to load values: " + "PartyNotify: " + settings.PartyNotify);
 		//Print("Settings to load values: " + "RangeOfMarker: " + settings.RangeOfMarker);

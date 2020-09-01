@@ -8,7 +8,8 @@ class SchanaPartyMarkerMenu extends UIScriptedMenu {
 
     private string m_SchanaPartyMarkerName = "";
     private vector m_SchanaPartyMarkerPosition = "0 0 0";
-
+    private bool isDefaultNameTag;
+    //Tactical Pings
     void SchanaPartyMarkerMenu (string name, vector position) {
         m_SchanaPartyMarkerRoot = GetGame ().GetWorkspace ().CreateWidgets ("SchanaModParty/GUI/Layouts/marker.layout");
         m_SchanaPartyMarkerNametag = TextWidget.Cast (m_SchanaPartyMarkerRoot.FindAnyWidget ("nametag"));
@@ -18,7 +19,7 @@ class SchanaPartyMarkerMenu extends UIScriptedMenu {
 
         m_SchanaPartyMarkerName = name;
         m_SchanaPartyMarkerPosition = position;
-
+        isDefaultNameTag = true;
         GetGame ().GetCallQueue (CALL_CATEGORY_GUI).CallLater (this.SchanaUpdate, 16, true);
     }
 
@@ -38,7 +39,6 @@ class SchanaPartyMarkerMenu extends UIScriptedMenu {
             delete this;
         }
     }
-
     private bool SchanaPartyMarkerShouldShow () {
         if (m_SchanaPartyMarkerRoot == null) {
             return false;

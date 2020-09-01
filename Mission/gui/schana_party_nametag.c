@@ -27,17 +27,19 @@ class SchanaPartyNametagsMenu extends UIScriptedMenu {
         m_SchanaPartyListRootWidget = GetGame ().GetWorkspace ().CreateWidgets ("SchanaModParty/GUI/Layouts/party.layout");
         m_SchanaPartyListTextWidget = TextWidget.Cast (m_SchanaPartyListRootWidget.FindAnyWidget ("Nametag"));
         m_SchanaPartyListHealthWidgets = new array<ImageWidget>;
-        for (int i = 0; i < 5; ++i) {
+        for (int i = 0; i < 15; ++i) {
             m_SchanaPartyListHealthWidgets.Insert (ImageWidget.Cast (m_SchanaPartyListRootWidget.FindAnyWidget ("IconHealth" + i.ToString ())));
         }
 
         m_SchanaPartyNametagPlayer = player;
 
         GetGame ().GetCallQueue (CALL_CATEGORY_GUI).CallLater (this.SchanaUpdate, 16, true);
+        GetGame ().GetCallQueue (CALL_CATEGORY_GUI).CallLater (this.CheckSettings, 10000, true);
     }
 
     void ~SchanaPartyNametagsMenu () {
         GetGame ().GetCallQueue (CALL_CATEGORY_GUI).Remove (this.SchanaUpdate);
+         GetGame ().GetCallQueue (CALL_CATEGORY_GUI).Remove (this.CheckSettings);
         if (m_SchanaPartyNametagRoot != null) {
             m_SchanaPartyNametagRoot.Show (false);
             m_SchanaPartyNametagRoot.Unlink ();
@@ -47,6 +49,49 @@ class SchanaPartyNametagsMenu extends UIScriptedMenu {
             m_SchanaPartyListRootWidget.Show (false);
             m_SchanaPartyListRootWidget.Unlink ();
         }
+    }
+
+    void CheckSettings()
+    {
+        if(!PluginPartySettingsClient().shouldUpdateSettings)
+            return;
+        //m_SchanaPartyNametagRoot.SetAlpha(PluginPartySettingsClient().MarkerOperacity);
+        m_SchanaPartyNametagNametag.SetAlpha(PluginPartySettingsClient().MarkerOperacity);
+        m_SchanaPartyNametagDistance.SetAlpha(PluginPartySettingsClient().MarkerOperacity);
+        m_SchanaPartyNametagIcon.SetAlpha(PluginPartySettingsClient().MarkerOperacity);
+        if(PluginPartySettingsClient().NameTagStyle == 0)
+        {
+            m_SchanaPartyNametagNametag.Show(true);
+            m_SchanaPartyNametagDistance.Show(true);
+            m_SchanaPartyNametagIcon.Show(true);
+            //Fix if layout is Destroyed
+            if(m_SchanaPartyNametagRoot == null);
+                m_SchanaPartyNametagRoot.Show(true);
+        }
+        else if(PluginPartySettingsClient().NameTagStyle == 1)
+        {
+            m_SchanaPartyNametagNametag.Show(true);
+            m_SchanaPartyNametagDistance.Show(false);
+            m_SchanaPartyNametagIcon.Show(false);
+            //Fix if layout is Destroyed
+            if(m_SchanaPartyNametagRoot == null);
+                m_SchanaPartyNametagRoot.Show(true);
+        }
+        else if(PluginPartySettingsClient().NameTagStyle == 2)
+        {
+            m_SchanaPartyNametagNametag.Show(true);
+            m_SchanaPartyNametagDistance.Show(true);
+            m_SchanaPartyNametagIcon.Show(false);
+            //Fix if layout is Destroyed
+            if(m_SchanaPartyNametagRoot == null);
+                m_SchanaPartyNametagRoot.Show(true);
+        }
+        else if(PluginPartySettingsClient().NameTagStyle == 3)
+        {
+            m_SchanaPartyNametagRoot.Show(false);
+        }
+        //PlayerBase player = PlayerBase.Cast(GetGame().GetPlayer());
+        //player.MessageStatus("Settings Updatet!");
     }
 
     void SchanaUpdate () 
@@ -155,7 +200,8 @@ class SchanaPartyNametagsMenu extends UIScriptedMenu {
         m_SchanaPartyListTextWidget.SetText (text);
         float health = SchanaPartyGetPlayerHealth () * 0.01;
         int healthLevel = 4 - health * 4;
-        for (int i = 0; i < 5; ++i) {
+        //Value Changed show 15 Members TODO Make a Config for this.
+        for (int i = 0; i < 15; ++i) {
             m_SchanaPartyListHealthWidgets[i].Show (healthLevel == i);
         }
         float width, height, x, y;
@@ -165,6 +211,7 @@ class SchanaPartyNametagsMenu extends UIScriptedMenu {
 
         m_SchanaPartyListRootWidget.SetPos (x, y);
     }
+    
 
     private bool SchanaPartyNametagVisibleOnScreen () {
         vector position = SchanaPartyGetPlayerPosition ();

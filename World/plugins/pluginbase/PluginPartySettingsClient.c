@@ -6,6 +6,8 @@ class PluginPartySettingsClient extends PluginBase
     static int RangeOfMarker;
     static int TacticalPing;
     static int PartyNotify;
+    static int MarkerOperacity;
+    static int NameTagStyle;
     bool isInited = false;
     
     void PluginPartySettingsClient()
@@ -39,6 +41,8 @@ class PluginPartySettingsClient extends PluginBase
             FPrintln(m_FileHandler, "<RangeOfPartMarker> 0");
             FPrintln(m_FileHandler, "<TacticalPing> 0");
             FPrintln(m_FileHandler, "<PartyNotify> 0");
+            FPrintln(m_FileHandler, "<MarkerOperacity> 1");
+            FPrintln(m_FileHandler, "<NameTagStyle> 0");
             FPrintln(m_FileHandler, "<FileEnd>");
         }
         CloseFile(m_FileHandler);
@@ -92,6 +96,30 @@ class PluginPartySettingsClient extends PluginBase
 				PartyNotify = line_content.ToInt();
 				validEntry = true;
 			}
+            if (line_content.Contains("<PartyNotify>"))
+			{
+				line_content.Replace("<PartyNotify>", "");
+				line_content = FileReadHelper.TrimComment(line_content);
+
+				PartyNotify = line_content.ToInt();
+				validEntry = true;
+			}
+            if (line_content.Contains("<MarkerOperacity>"))
+			{
+				line_content.Replace("<MarkerOperacity>", "");
+				line_content = FileReadHelper.TrimComment(line_content);
+
+				MarkerOperacity = line_content.ToInt();
+				validEntry = true;
+			}
+            if (line_content.Contains("<NameTagStyle>"))
+			{
+				line_content.Replace("<NameTagStyle>", "");
+				line_content = FileReadHelper.TrimComment(line_content);
+
+				NameTagStyle = line_content.ToInt();
+				validEntry = true;
+			}
         }
 		CloseFile(file_index);
 	}
@@ -138,7 +166,7 @@ class PluginPartySettingsClient extends PluginBase
     */
     
     //This update the File to the current usere Settings.
-    void UpdateFile(int dbm_RangeOfPartyMarker, int dbm_TacticalPing, int dbm_PartyNotify)
+    void UpdateFile(int dbm_RangeOfPartyMarker, int dbm_TacticalPing, int dbm_PartyNotify, int dbm_MarkerOperacity, int dbm_NameTagStyle)
     {
         Print("DBMPARTY -> File Update Called.");
         if(FileExist(PATH))
@@ -149,12 +177,16 @@ class PluginPartySettingsClient extends PluginBase
             FPrintln(m_FileHandler, "<RangeOfPartMarker> " + dbm_RangeOfPartyMarker.ToString());
             FPrintln(m_FileHandler, "<TacticalPing> " + dbm_TacticalPing.ToString());
             FPrintln(m_FileHandler, "<PartyNotify> " + dbm_PartyNotify.ToString());
+            FPrintln(m_FileHandler, "<MarkerOperacity> " + dbm_MarkerOperacity.ToString());
+            FPrintln(m_FileHandler, "<NameTagStyle> " + dbm_NameTagStyle.ToString());
             FPrintln(m_FileHandler, "<FileEnd>");
 
             //Update vars
             RangeOfMarker = dbm_RangeOfPartyMarker;
             TacticalPing = dbm_TacticalPing;
             PartyNotify = dbm_PartyNotify;
+            MarkerOperacity = dbm_MarkerOperacity;
+            NameTagStyle = dbm_NameTagStyle;
 
         }
         CloseFile(m_FileHandler);

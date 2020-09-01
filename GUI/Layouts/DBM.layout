@@ -240,13 +240,13 @@ FrameWidgetClass rootFrame {
     }
     ImageWidgetClass ImageWidget2 {
      ignorepointer 1
-     position 0.00477 0.01018
+     position -0.00867 0.0063
      size 0.253 0.093
      hexactpos 0
      vexactpos 0
      hexactsize 0
      vexactsize 0
-     imageTexture "{4107761BF949B92D}SchanaModParty/GUI/Layouts/menu-party-192.edds"
+     imageTexture "{10FA4B75B423883D}SchanaModParty/GUI/Layouts/menu-party-192.edds"
      mode blend
      "src alpha" 1
      stretch 1
@@ -297,7 +297,7 @@ FrameWidgetClass rootFrame {
      vexactpos 0
      hexactsize 0
      vexactsize 0
-     imageTexture "{614D3D093596DCDA}SchanaModParty/GUI/Layouts/DBMLOgo48.edds"
+     imageTexture "{A6EBF160A802ECDE}SchanaModParty/GUI/Layouts/DBMLOgo48.edds"
      mode blend
      "src alpha" 1
      stretch 1
@@ -318,7 +318,7 @@ FrameWidgetClass rootFrame {
    {
     PanelWidgetClass PanelWidget1 {
      ignorepointer 1
-     position 0.00958 0.01005
+     position 0.02098 0.00776
      size 0.98 0.97808
      hexactpos 0
      vexactpos 0
@@ -326,32 +326,37 @@ FrameWidgetClass rootFrame {
      vexactsize 0
      {
       EditBoxWidgetClass RangeOfMarkersystem {
-       position 0.38846 0.33676
-       size 0.33365 0.1188
+       position 0.33967 0.23587
+       size 0.3229 0.1188
        hexactpos 0
        vexactpos 0
        hexactsize 0
        vexactsize 0
+       style DefaultBorder
       }
       TextWidgetClass DBM_TEXTRANGEMARKER {
        ignorepointer 1
-       position 0.03105 0.36407
-       size 0.3592 0.08098
+       position 0.00761 0.25713
+       size 0.32374 0.07437
        hexactpos 0
        vexactpos 0
        hexactsize 0
        vexactsize 0
-       text "Range of PartyMarker:"
+       text "DBM_TEXTRANGEMARKER"
+       "size to text h" 0
+       "size to text v" 0
       }
       TextWidgetClass TextWidget2 {
        ignorepointer 1
-       position 0.7305 0.35272
-       size 0.0445 0.11264
+       position 0.66493 0.23375
+       size 0.33322 0.13038
        hexactpos 0
        vexactpos 0
        hexactsize 0
        vexactsize 0
        text "m"
+       "size to text h" 1
+       "size to text v" 1
       }
       GridSpacerWidgetClass GridSpacerWidget13 {
        ignorepointer 1
@@ -365,17 +370,18 @@ FrameWidgetClass rootFrame {
       }
       ButtonWidgetClass ButtonSet {
        color 0 0.502 0.1255 1
-       position 0.79544 0.33742
+       position 0.71648 0.23135
        size 0.19366 0.12803
        hexactpos 0
        vexactpos 0
        hexactsize 0
        vexactsize 0
        text "set"
+       "disabled text color" 1 0.9804 0.9804 1
       }
       TextWidgetClass infoWidget {
        ignorepointer 1
-       position 0.03922 0.4895
+       position -0.01307 0.36856
        size 0.88061 0.05595
        halign center_ref
        hexactpos 0
@@ -395,12 +401,44 @@ FrameWidgetClass rootFrame {
        vexactsize 0
        text "#DBM_SETTINGS"
       }
+      TextWidgetClass infoWidget0 {
+       ignorepointer 1
+       position 0.35886 0.63431
+       size 0.3124 0.07053
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       style Bold
+       text "#DBM_MARKER"
+      }
+      XComboBoxWidgetClass SelectNametagStyle {
+       position 0.00232 0.9364
+       size 1 0.05
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       style Default
+       items "Default;Name only;Name and Distance;Off"
+      }
+      TextWidgetClass infoWidget1 {
+       ignorepointer 1
+       position 0.3343 0.85077
+       size 0.39422 0.08078
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       style Bold
+       text "#DBM_NAMETAGSTYLE"
+      }
      }
     }
    }
   }
   CheckBoxWidgetClass PartyNotify {
-   position 0.48424 0.7621
+   position 0.48537 0.69061
    size 0.24546 0.02926
    hexactpos 0
    vexactpos 0
@@ -409,7 +447,7 @@ FrameWidgetClass rootFrame {
    text "#DBM_PartyNotify"
   }
   CheckBoxWidgetClass DisablePing {
-   position 0.48455 0.7974
+   position 0.485 0.72479
    size 0.24503 0.02809
    hexactpos 0
    vexactpos 0
@@ -439,6 +477,14 @@ FrameWidgetClass rootFrame {
    hexactsize 0
    vexactsize 0
    text "#DBM_Remove"
+  }
+  SliderWidgetClass SliderWidget0 {
+   position 0.48532 0.78282
+   size 0.24499 0.02592
+   hexactpos 0
+   vexactpos 0
+   hexactsize 0
+   vexactsize 0
   }
  }
 }
